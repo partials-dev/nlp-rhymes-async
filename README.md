@@ -17,29 +17,14 @@ import nlp from 'nlp_compromise'
 import rhymes from 'nlp-rhymes-async'
 nlp.plugin(rhymes)
 
-nlp.text('simple is different from easy').rhymes().then(terms => {
-  const allRhymes = terms.map(t => t.rhymes)
-  console.log(JSON.stringify(allRhymes))
+nlp.term('simple').getRhymesAsync().then(rhymes => {
+  console.log(JSON.stringify(rhymes))
   // output:
   // [
-  //  ['sim', 'ple'],
-  //  ['is'],
-  //  ['dif', 'fer', 'ent'],
-  //  ['from'],
-  //  ['eas', 'y']
-  // ]
-})
-
-nlp.term('remain').rhymesAsync().then(rhymes => {
-  console.log(rhymes)
-  // output:
-  // [
-  //  'in',
-  //  'de',
-  //  'ter',
-  //  'mi',
-  //  'na',
-  //  'cy'
+  //  {"word": "civil", "numSyllables": 2},
+  //  {"word": "fickle", "numSyllables": 2},
+  //  {"word":"kindle", "numSyllables": 2},
+  //  etc...
   // ]
 })
 ```
